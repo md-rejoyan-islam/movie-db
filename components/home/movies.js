@@ -1,13 +1,16 @@
-import { popularMovie, topRatedMovie, trendingMovie } from "@/db/movies";
 import Image from "next/image";
 import Link from "next/link";
 
-export default async function HomeMovies() {
-  const [
-    { results: popularMovies },
-    { results: trendingMovies },
-    { results: topRatedMovies },
-  ] = await Promise.all([popularMovie(), trendingMovie(), topRatedMovie()]);
+export default async function HomeMovies({
+  popularMovies,
+  trendingMovies,
+  topRatedMovies,
+}) {
+  // const [
+  //   { results: popularMovies },
+  //   { results: trendingMovies },
+  //   { results: topRatedMovies },
+  // ] = await Promise.all([popularMovie(), trendingMovie(), topRatedMovie()]);
 
   return (
     <div className="container mx-auto px-4 py-8">

@@ -66,10 +66,16 @@ export async function generateMetadata({ params }) {
 export default async function Movie({ params }) {
   const { id } = params;
 
-  const movie = await getMovie(id);
+  // const movie = await getMovie(id);
 
-  const { cast } = await getMovieCreditsById(id);
-  const { results: relatedMovies } = await getSimilarMovieById(id);
+  // const { cast } = await getMovieCreditsById(id);
+  // const { results: relatedMovies } = await getSimilarMovieById(id);
+
+  const [movie, { cast }, { results: relatedMovies }] = await Promise.all([
+    getMovie(id),
+    getMovieCreditsById(id),
+    getSimilarMovieById(id),
+  ]);
 
   if (!movie) {
     notFound();

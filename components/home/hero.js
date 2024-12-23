@@ -1,7 +1,5 @@
-import { getRandomMovie } from "@/db/movies";
-
-export default async function HomeHero() {
-  const randomMovie = await getRandomMovie();
+export default async function HomeHero({ randomMovie }) {
+  // const randomMovie = await getRandomMovie();
 
   return (
     <div

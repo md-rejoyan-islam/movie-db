@@ -33,9 +33,8 @@ function Search() {
             params.delete("value");
           } else {
             params.set("value", e.target.value);
+            router.replace(`${pathname}?${params.toString()}`);
           }
-
-          router.replace(`${pathname}?${params.toString()}`);
         }}
         onKeyUp={(e) => handleSearch(e)}
       />
