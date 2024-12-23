@@ -33,9 +33,9 @@ export default async function Search({ searchParams }) {
   let searchResults = [];
 
   try {
-    const response = await searchMovieByName(value);
-    if (response && response.results) {
-      searchResults = response.results;
+    const response = searchParams && (await searchMovieByName(value));
+    if (response && response?.results) {
+      searchResults = response?.results;
     }
   } catch (error) {
     console.error("Error fetching movie data:", error);
