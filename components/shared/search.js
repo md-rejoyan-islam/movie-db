@@ -1,7 +1,8 @@
 "use client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
-export default function MovieSearch() {
+import { Suspense, useState } from "react";
+import Loading from "../loading";
+function Search() {
   const searchParams = useSearchParams();
 
   const [search, setSearch] = useState(searchParams.get("value") || "");
@@ -43,5 +44,13 @@ export default function MovieSearch() {
         className="absolute w-full mt-2 bg-black bg-opacity-90 rounded-lg hidden"
       />
     </div>
+  );
+}
+
+export default function MovieSearch() {
+  return (
+    <Suspense fallback={<Loading />}>
+      <Search />
+    </Suspense>
   );
 }
