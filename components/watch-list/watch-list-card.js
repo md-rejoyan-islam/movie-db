@@ -18,8 +18,6 @@ export default function WatchListCard() {
         setWatchList((prev) => prev.filter((movie) => movie.id !== movieId));
       }
     } catch (error) {
-      console.log(error);
-
       toast.error("Failed to remove movie from watch list");
     }
   };
