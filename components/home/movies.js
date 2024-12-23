@@ -3,9 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function HomeMovies() {
-  const { results: popularMovies } = await popularMovie();
-  const { results: trendingMovies } = await trendingMovie();
-  const { results: topRatedMovies } = await topRatedMovie();
+  const [
+    { results: popularMovies },
+    { results: trendingMovies },
+    { results: topRatedMovies },
+  ] = await Promise.all([popularMovie(), trendingMovie(), topRatedMovie()]);
 
   return (
     <div className="container mx-auto px-4 py-8">

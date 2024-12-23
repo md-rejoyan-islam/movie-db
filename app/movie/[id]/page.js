@@ -9,11 +9,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+export async function getMovie(id) {
+  try {
+    const movie = await getMovieById(id);
+    return movie;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
 export async function generateMetadata({ params }) {
   const { id } = params;
 
   try {
-    const movie = await getMovieById(id);
+    const movie = await getMovie(id);
 
     if (!movie) throw new Error("Movie not found");
 
@@ -57,7 +66,7 @@ export async function generateMetadata({ params }) {
 export default async function Movie({ params }) {
   const { id } = params;
 
-  const movie = await getMovieById(id);
+  const movie = await getMovie(id);
 
   const { cast } = await getMovieCreditsById(id);
   const { results: relatedMovies } = await getSimilarMovieById(id);
