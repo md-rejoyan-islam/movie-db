@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuth } from "@/app/hooks/useAuth";
-import Link from "next/link";
+import CustomLink from "./custom-link";
 
 export default function ProtectLi() {
   const { user, setUser } = useAuth();
@@ -13,9 +13,10 @@ export default function ProtectLi() {
     <>
       {user ? (
         <>
-          <Link href="/watch-list" className="text-white hover:text-gray-300">
+          <CustomLink path={"/watch-list"} style={" hover:text-gray-300"}>
             Watch Later
-          </Link>
+          </CustomLink>
+
           <button
             onClick={handleLogout}
             className="text-white hover:text-gray-300"
@@ -24,9 +25,9 @@ export default function ProtectLi() {
           </button>
         </>
       ) : (
-        <Link href="/login" className="text-white hover:text-gray-300">
+        <CustomLink path="/login" style=" hover:text-gray-300">
           Login
-        </Link>
+        </CustomLink>
       )}
     </>
   );
