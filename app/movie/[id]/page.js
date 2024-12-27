@@ -1,5 +1,10 @@
 import AddToWatchList from "@/components/movie/add-to-watch-list";
 import {
+  CustomFacebookShareButton,
+  CustomLinkedinShareButton,
+  CustomTwitterShareButton,
+} from "@/components/movie/share-button";
+import {
   getMovieById,
   getMovieCreditsById,
   getSimilarMovieById,
@@ -156,36 +161,9 @@ export default async function Movie({ params }) {
                 <div className="mb-6">
                   <h3 className="text-gray-400 mb-2">Share on social media</h3>
                   <div className="flex flex-wrap gap-4">
-                    <button className="text-center cursor-pointer">
-                      <Image
-                        src="http://facebook.com/favicon.ico"
-                        alt="Facebook"
-                        className="w-8 h-8 rounded-full object-cover mb-2 mx-auto"
-                        width={200}
-                        height={300}
-                      />
-                      <p className="text-sm">Facebook</p>
-                    </button>
-                    <button className="text-center cursor-pointer">
-                      <Image
-                        src="http://x.com/favicon.ico"
-                        alt="Facebook"
-                        className="w-8 h-8 rounded-full object-cover mb-2 mx-auto"
-                        width={200}
-                        height={300}
-                      />
-                      <p className="text-sm">X</p>
-                    </button>
-                    <button className="text-center cursor-pointer">
-                      <Image
-                        src="http://linkedin.com/favicon.ico"
-                        alt="Facebook"
-                        className="w-8 h-8 rounded-full object-cover mb-2 mx-auto"
-                        width={200}
-                        height={300}
-                      />
-                      <p className="text-sm">Linkedin</p>
-                    </button>
+                    <CustomFacebookShareButton id={id} movie={movie} />
+                    <CustomTwitterShareButton id={id} movie={movie} />
+                    <CustomLinkedinShareButton id={id} movie={movie} />
                   </div>
                 </div>
               </div>

@@ -3,6 +3,6 @@ export const metadata = {
   description: "A simple movie website built with Next.js",
 };
 
-export default function Layout({ children }) {
+export default function CompareLayout({ children }) {
   return <>{children}</>;
 }
