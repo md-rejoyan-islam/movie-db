@@ -41,7 +41,7 @@ export async function generateMetadata({ params }) {
           movie?.release_date
         )?.getFullYear()})`,
         description: movie.overview,
-        url: `https://yourdomain.com/movie/${id}`,
+        url: `${process.env.NEXT_PUBLIC_POSTER_BASE_URL}/movie/${id}`,
         images: [
           {
             url: `${process.env.NEXT_PUBLIC_POSTER_BASE_URL}${movie?.poster_path}`,
