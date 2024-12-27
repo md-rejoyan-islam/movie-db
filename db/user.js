@@ -1,5 +1,6 @@
 import { comparePassword, hashPassword } from "@/helper/helper";
 import userModel from "@/models/user.model";
+import { dbConnect } from "@/services/mongo";
 
 // user registration
 export async function createUser(data) {
@@ -33,6 +34,7 @@ export async function createUser(data) {
 }
 // user login
 export async function userLogin(data) {
+  await dbConnect();
   try {
     const { email, password } = data;
 
