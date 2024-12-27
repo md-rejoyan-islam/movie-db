@@ -5,6 +5,7 @@ import {
   movieAddToWatchList,
   removeWatchListMovie,
 } from "@/db/watch-list";
+import { dbConnect } from "@/services/mongo";
 
 const { createUser, userLogin } = require("@/db/user");
 
@@ -20,6 +21,7 @@ export async function registerUser(data) {
 }
 
 export async function loginUserWithCredentials(data) {
+  await dbConnect();
   try {
     const user = await userLogin(data);
     return user;
