@@ -19,7 +19,7 @@ export async function getMovie(id) {
     const movie = await getMovieById(id);
     return movie;
   } catch (error) {
-    throw new Error(error);
+    return notFound();
   }
 }
 
