@@ -3,24 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function HomeMovies() {
-  const { results: popularMovies } =
-    process.env.BUILD_TIME === "true"
-      ? {
-          results: [],
-        }
-      : await popularMovie();
-  const { results: trendingMovies } =
-    process.env.BUILD_TIME === "true"
-      ? {
-          results: [],
-        }
-      : await trendingMovie();
-  const { results: topRatedMovies } =
-    process.env.BUILD_TIME === "true"
-      ? {
-          results: [],
-        }
-      : await topRatedMovie();
+  const { results: popularMovies } = await popularMovie();
+  const { results: trendingMovies } = await trendingMovie();
+  const { results: topRatedMovies } = await topRatedMovie();
 
   return (
     <div className="container mx-auto px-4 py-8">

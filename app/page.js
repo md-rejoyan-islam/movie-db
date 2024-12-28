@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import HomeHero from "@/components/home/hero";
 import HomeMovies from "@/components/home/movies";
 

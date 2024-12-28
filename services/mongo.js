@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import mongoose from "mongoose";
 
 export async function dbConnect() {

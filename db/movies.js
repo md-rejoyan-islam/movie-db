@@ -1,5 +1,3 @@
-import axios from "axios";
-
 const url = process.env.NEXT_PUBLIC_SITE_URL;
 
 export async function popularMovie() {
@@ -8,8 +6,10 @@ export async function popularMovie() {
       throw new Error("Site URL is not defined");
     }
 
-    const response = await axios.get(url + "/api/movie/popular");
-    const movie = response.data;
+    const movie = await fetch(url + "/api/movie/popular").then((res) =>
+      res.json()
+    );
+
     return movie;
   } catch (error) {
     throw new Error(error);
@@ -21,9 +21,11 @@ export async function trendingMovie() {
     if (!url) {
       throw new Error("Site URL is not defined");
     }
-    const response = await axios.get(url + "/api/movie/trending");
-    const movie = response.data;
-    return movie;
+    const response = await fetch(url + "/api/movie/trending").then((res) =>
+      res.json()
+    );
+
+    return response;
   } catch (error) {
     throw new Error(error);
   }
@@ -35,16 +37,12 @@ export async function getRandomMovie() {
       throw new Error("Site URL is not defined");
     }
 
-    // if (process.env.BUILD_TIME === "true") {
-    //   return {};
-    // }
-
-    const response = await axios.get(url + "/api/movie/trending");
+    const response = await fetch(url + "/api/movie/trending").then((res) =>
+      res.json()
+    );
 
     const movie =
-      response.data?.results[
-        Math.floor(Math.random() * response.data?.results?.length)
-      ];
+      response.results[Math.floor(Math.random() * response.results.length)];
 
     return movie;
   } catch (error) {
@@ -59,9 +57,12 @@ export async function topRatedMovie() {
     if (!url) {
       throw new Error("Site URL is not defined");
     }
-    const response = await axios.get(url + "/api/movie/top-rated");
-    const movie = response.data;
-    return movie;
+
+    const response = await fetch(url + "/api/movie/top-rated").then((res) =>
+      res.json()
+    );
+
+    return response;
   } catch (error) {
     throw new Error(error);
   }
@@ -75,9 +76,12 @@ export async function getMovieById(id) {
     if (!id) {
       throw new Error("Movie ID is not defined");
     }
-    const response = await axios.get(url + `/api/movie/${id}`);
-    const movie = response.data;
-    return movie;
+
+    const response = await fetch(url + `/api/movie/${id}`).then((res) =>
+      res.json()
+    );
+
+    return response;
   } catch (error) {
     throw new Error(error);
   }
@@ -91,9 +95,12 @@ export async function getMovieCreditsById(id) {
     if (!id) {
       throw new Error("Movie ID is not defined");
     }
-    const response = await axios.get(url + `/api/movie/${id}/credit`);
-    const movie = response.data;
-    return movie;
+
+    const response = await fetch(url + `/api/movie/${id}/credit`).then((res) =>
+      res.json()
+    );
+
+    return response;
   } catch (error) {
     throw new Error(error);
   }
@@ -108,9 +115,11 @@ export async function getSimilarMovieById(id) {
       throw new Error("Movie ID is not defined");
     }
 
-    const response = await axios.get(url + `/api/movie/${id}/similar`);
+    const response = await fetch(url + `/api/movie/${id}/similar`).then((res) =>
+      res.json()
+    );
     const movie = response.data;
-    return movie;
+    return response;
   } catch (error) {
     throw new Error(error);
   }
@@ -125,11 +134,11 @@ export async function searchMovieByName(name) {
       throw new Error("Movie name is not defined ");
     }
 
-    const response = await axios.get(
+    const response = await fetch(
       url + `/api/movie/search-movie?query=${name}`
-    );
-    const movie = response.data;
-    return movie;
+    ).then((res) => res.json());
+
+    return response;
   } catch (error) {
     throw new Error(error);
   }
@@ -140,9 +149,12 @@ export async function getAllGenres() {
     if (!url) {
       throw new Error("Site URL is not defined");
     }
-    const response = await axios.get(url + "/api/movie/genres");
-    const genres = response.data;
-    return genres;
+
+    const response = await fetch(url + "/api/movie/genres").then((res) =>
+      res.json()
+    );
+
+    return response;
   } catch (error) {
     throw new Error(error);
   }

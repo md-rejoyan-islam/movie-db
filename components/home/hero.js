@@ -1,8 +1,7 @@
 import { getRandomMovie } from "@/db/movies";
 
 export default async function HomeHero() {
-  const randomMovie =
-    process.env.BUILD_TIME === "true" ? {} : await getRandomMovie();
+  const randomMovie = await getRandomMovie();
 
   return (
     <div
