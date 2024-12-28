@@ -1,6 +1,9 @@
+"use server";
+
 import { comparePassword, hashPassword } from "@/helper/helper";
 import userModel from "@/models/user.model";
 import { dbConnect } from "@/services/mongo";
+import { cookies } from "next/headers";
 
 // user registration
 export async function createUser(data) {
@@ -56,8 +59,31 @@ export async function userLogin(data) {
 
     if (!isMatch) throw new Error("Wrong password");
 
+    // Cookies set here
+    const cookieStore = await cookies();
+
+    cookieStore.set(
+      "user",
+      JSON.stringify({
+        id: user.id,
+        email: user.email,
+      }),
+      {
+        maxAge: 30 * 24 * 60 * 60,
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+      }
+    );
+
     return user;
   } catch (error) {
     throw new Error(error.message);
   }
+}
+
+// user logout
+export async function userLogout() {
+  const cookieStore = await cookies();
+  cookieStore.delete("user");
 }

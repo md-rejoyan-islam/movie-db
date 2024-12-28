@@ -16,7 +16,7 @@ const LoginForm = () => {
   } = useForm();
   const { setUser } = useAuth();
   const router = useRouter();
-  const onSubmit = async (data, event) => {
+  const onSubmit = async (data) => {
     const response = await loginUserWithCredentials(data);
 
     if (response.status === "success") {

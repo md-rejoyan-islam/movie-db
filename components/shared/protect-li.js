@@ -1,13 +1,17 @@
 "use client";
 
 import { useAuth } from "@/app/hooks/useAuth";
+import { userLogout } from "@/db/user";
+import { toast } from "react-toastify";
 import CustomLink from "./custom-link";
 
 export default function ProtectLi() {
   const { user, setUser } = useAuth();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await userLogout();
     setUser(null);
+    toast.success("Logout successful");
   };
   return (
     <>
