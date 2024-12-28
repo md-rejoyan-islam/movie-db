@@ -118,7 +118,7 @@ export async function getSimilarMovieById(id) {
     const response = await fetch(url + `/api/movie/${id}/similar`).then((res) =>
       res.json()
     );
-    const movie = response.data;
+
     return response;
   } catch (error) {
     throw new Error(error);

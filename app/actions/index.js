@@ -11,20 +11,32 @@ const { createUser, userLogin } = require("@/db/user");
 export async function registerUser(data) {
   try {
     const user = await createUser(data);
-    return user;
+    return {
+      status: "success",
+      user,
+    };
   } catch (error) {
     console.log(error);
 
-    throw new Error(error.message);
+    return {
+      status: "error",
+      message: error.message,
+    };
   }
 }
 
 export async function loginUserWithCredentials(data) {
   try {
     const user = await userLogin(data);
-    return user;
+    return {
+      status: "success",
+      user,
+    };
   } catch (error) {
-    throw new Error(error.message);
+    return {
+      status: "error",
+      message: error.message,
+    };
   }
 }
 

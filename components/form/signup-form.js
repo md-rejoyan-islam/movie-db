@@ -18,11 +18,14 @@ const SignupForm = () => {
     if (data.password !== data.confirmPassword) {
       return toast.error("Passwords do not match");
     }
-    try {
-      const user = await registerUser(data);
-      if (user) router.push("/login");
-    } catch (error) {
-      toast.error(error.message);
+
+    const response = await registerUser(data);
+
+    if (response.status === "success") {
+      toast.success("Registration successful");
+      router.push("/login");
+    } else {
+      toast.error(response.message);
     }
   };
 

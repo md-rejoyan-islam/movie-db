@@ -23,5 +23,5 @@ const WatchListSchema = new Schema({
   },
 });
 
-export default mongoose.model?.WatchList ??
+export default mongoose.models.WatchList ||
   mongoose.model("WatchList", WatchListSchema);

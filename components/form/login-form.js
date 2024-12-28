@@ -16,19 +16,15 @@ const LoginForm = () => {
   } = useForm();
   const { setUser } = useAuth();
   const router = useRouter();
-  const onSubmit = async (data) => {
-    try {
-      const user = await loginUserWithCredentials(data);
+  const onSubmit = async (data, event) => {
+    const response = await loginUserWithCredentials(data);
 
-      if (user) {
-        console.log(user);
-
-        router.push("/");
-        setUser(user);
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error(error.message);
+    if (response.status === "success") {
+      toast.success("Login successful");
+      router.push("/");
+      setUser(response.user);
+    } else {
+      toast.error(response.message);
     }
   };
 

@@ -4,6 +4,7 @@ import { dbConnect } from "@/services/mongo";
 
 // user registration
 export async function createUser(data) {
+  await dbConnect();
   try {
     const { firstName, lastName, email, password } = data;
 
